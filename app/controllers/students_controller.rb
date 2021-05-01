@@ -8,6 +8,15 @@ class StudentsController < ApplicationController
   def show
   end
 
+  def update
+    if set_student.active == false
+      set_student.update(:active => true)
+    elsif set_student.active == true
+      set_student.update(:active => false)
+    end
+    redirect_to "/students/#{set_student[:id]}"
+  end
+
   private
 
     def set_student
